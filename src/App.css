@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.strikeThrough {
+  text-decoration: line-through;
+  color: green;
+  list-style: none;
+}
+.normalText {
+  text-decoration: none;
+  color: red;
+  list-style: none;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
