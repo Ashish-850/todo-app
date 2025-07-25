@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 
-export default function AddTask({ onAdd }) {
-  const [inputValue, setInputValue] = useState("");
+export default function AddTask( { onAdd } ) {
+  const [ inputValue, setInputValue ] = useState( "" );
+
   const handleSubmit = () => {
-    if (!inputValue.trim()) return;
-    onAdd(inputValue); //pass input value to parent
-    setInputValue(""); // clear input
-  }
+    if ( !inputValue.trim() ) return;
+    onAdd( inputValue );
+    setInputValue( "" );
+  };
 
   return (
-    <>
+    <div className="add-task">
       <input
         type="text"
-        placeholder="Write task here..."
+        className="add-task-input"
+        placeholder="Write your task..."
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={( e ) => setInputValue( e.target.value )}
       />
-      <button onClick={handleSubmit}>Add task</button>
-    </>
+      <button className="btn btn-primary" onClick={handleSubmit}>
+        Add Task
+      </button>
+    </div>
   );
 }
