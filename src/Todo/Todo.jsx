@@ -3,7 +3,8 @@ import axios from 'axios';
 import AddTask from './AddTask';
 import RenderTaskList from './RenderTaskList';
 
-const todoApi = "http://localhost:4000/api/todos"; // No trailing slash
+const todoApi = "https://todo-server-vbjn.onrender.com/api/todos"
+
 
 export default function Todo() {
   const [ tasks, setTasks ] = useState( [] );
