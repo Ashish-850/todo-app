@@ -17,16 +17,16 @@ export default function RenderTaskList( {
       <h3 className="task-title">Your Tasks</h3>
       <ul className="task-list">
         {taskList.map( ( t ) => (
-          <li key={t.id} className={`task-item ${ t.done ? "done" : "" }`}>
+          <li key={t._id} className={`task-item ${ t.done ? "done" : "" }`}>
             <input
               type="checkbox"
               checked={t.done}
-              onChange={() => onToggle( t.id )}
+              onChange={() => onToggle( t._id )}
               className="checkbox"
             />
 
             {t.isEditing ? (
-              <>
+              <div className="edit-section">
                 <input
                   type="text"
                   value={inputText}
@@ -34,38 +34,40 @@ export default function RenderTaskList( {
                   className="task-input"
                 />
                 <button
+                  onClick={() => onSave( t._id, inputText )}
                   className="btn btn-primary"
-                  onClick={() => onSave( t.id, inputText )}
                 >
                   Save
                 </button>
                 <button
+                  onClick={() => onCancel( t._id )}
                   className="btn btn-secondary"
-                  onClick={() => onCancel( t.id )}
                 >
                   Cancel
                 </button>
-              </>
+              </div>
             ) : (
               <>
                 <span className="task-text">{t.task}</span>
-                <button
-                  className="btn btn-primary"
-                  disabled={anyEditing}
-                  onClick={() => {
-                    setInputText( t.task );
-                    startEditing( t.id );
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger"
-                  disabled={anyEditing}
-                  onClick={() => onDelete( t.id )}
-                >
-                  Delete
-                </button>
+                <div className="button-group">
+                  <button
+                    disabled={anyEditing}
+                    onClick={() => {
+                      setInputText( t.task );
+                      startEditing( t._id );
+                    }}
+                    className="btn btn-warning"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    disabled={anyEditing}
+                    onClick={() => onDelete( t._id )}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </div>
               </>
             )}
           </li>
